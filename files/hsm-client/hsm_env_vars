@@ -6,3 +6,5 @@ export UNLOCKPASS="unlockpass32768"
 export OPERATORPASS="operatorpass32768"
 export METRICSPASS="metricspass32768"
 export BACKUPPASS="backuppass32768"
+export CURLOPTS=' --silent --insecure '
+export API='https://147.28.221.5:32768/api/v1'

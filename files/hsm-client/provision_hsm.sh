@@ -35,7 +35,16 @@ if [[ ${STATE} == "Unprovisioned" ]]; then
   -d '{"realName": "Nitrokey Backup", "role": "Backup", "passphrase": "'${BACKUPPASS}'"}'
   curl -s --user "admin:${ADMINPASS}" --insecure -X 'PUT' "https://${NETHSM_HOST}/api/v1/config/backup-passphrase" \
   -H 'accept: */*' -H 'Content-Type: application/json' \
-  -d '{"newPassphrase": "t0P$eCr3Tz", "currentPassphrase": ""}'
+  -d '{"newPassphrase": "t0PZeCr3Tz", "currentPassphrase": ""}'
+  for X in {1..30}; do
+    NS=ns${X}
+    echo $NS
+    curl $CURLOPTS --user "admin:$ADMINPASS" -X PUT $API/users/$NS~admin -H 'accept: */*' -H 'Content-Type: application/json' -d '{ "realName": "$NS_Admin", "role": "Administrator","passphrase": "'t0PZeCr3Tz-${NS}'" }'
+    curl $CURLOPTS --user "admin:$ADMINPASS" -X PUT $API/users/$NS~operator -H 'accept: */*' -H 'Content-Type: application/json' -d '{ "realName": "$NS_Operator", "role": "Operator","passphrase": "'ZeCr3Tz-${NS}'" }'
+    curl $CURLOPTS --user "admin:$ADMINPASS" -X PUT $API/namespaces/$NS -H 'accept: */*'
+    curl $CURLOPTS --user "$NS~admin:t0PZeCr3Tz-$NS" -X GET $API/users -H 'accept: application/json' | jq .
+    curl $CURLOPTS --user "$NS~operator:ZeCr3Tz-$NS" -X POST $API/random -H 'accept: application/json' -H 'Content-Type: application/json' -d '{ "length": 2 }' | jq -r .
+  done
 fi
 
 STATE=$(curl --silent --insecure https://${NETHSM_HOST}/api/v1/health/state | jq -r '.state')

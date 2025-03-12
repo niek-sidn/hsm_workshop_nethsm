@@ -1,0 +1,32 @@
+services:
+  nitrokey-nethsm:
+    hostname: nitrokey-nethsm
+    image: "docker.io/nitrokey/nethsm:testing"
+    networks:
+      hsmnet:
+        ipv4_address: 172.20.0.18
+    ports:
+      - name: web-secured
+        target: "8443"
+        host_ip: 147.28.221.5
+        published: "32768"
+        protocol: tcp
+        app_protocol: https
+    volumes:
+      - ./files/nitrokey-nethsm/data:/data:rw
+  hsm-client:
+    build:
+      dockerfile: ./dockerfiles/Dockerfile.hsmclient
+    hostname: hsm-client
+    image: "hsmclient:latest"
+    depends_on:
+      - nitrokey-nethsm
+    networks:
+      hsmnet:
+        ipv4_address: 172.20.0.19
+networks:
+  hsmnet:
+    enable_ipv6: false
+    ipam:
+      config:
+      - subnet: 172.20.0.0/24

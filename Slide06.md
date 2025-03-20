@@ -10,7 +10,7 @@ by parts outside this crypto module.\
 The crypto module in most cases has a very limited interface, you are probably not allowed to log into it.
 
 An HSM should contain an **HRNG** (hardware random number generator),\
-because key generation is very dependent on a good source of random numbers.
+because secure key generation is very dependent on a good source of random numbers.
 
 A Linux/Windows server in most cases has no HRNG, but it uses tricks to
 create real random.\

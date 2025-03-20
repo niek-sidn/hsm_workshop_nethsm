@@ -43,7 +43,7 @@ You got 9438 and 11869 , didn't you?
 
 /dev/urandom generates a predictable, repeatable set of pseudo-random numbers.\
 The begin argument is a starting point, and this can of course be a piece of "good" random from the pool.\
-But it can also be the output of 'date' at reboot.\
+But it can also be the output of 'date' at reboot.
 > Note: For testing a predictable, repeatable set of pseudo-random numbers can actually be a good thing!
 
 ---

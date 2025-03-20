@@ -19,11 +19,13 @@ apt-get update && apt-get upgrade -y && apt-get install -y git ca-certificates c
 
 git clone https://github.com/niek-sidn/hsm_workshop_nethsm.git
 
-cd hsm_workshop_nethsm  
-rm -rf files/nitrokey-nethsm/data  
-export NETHSM_PUB_IPV4="192.168.13.13" #(bijvoorbeeld, moet pub ip4 zijn)
-envsubst '$NETHSM_PUB_IPV4' < files/hsm-client/hsm_env_vars.envsubst > files/hsm-client/hsm_env_vars
-envsubst '$NETHSM_PUB_IPV4' < compose.yml.envsubst > compose.yml
+`cd hsm_workshop_nethsm`  
+`rm -rf files/nitrokey-nethsm/data`  
+`export NETHSM_PUB_IPV4="192.168.13.13" #(bijvoorbeeld, moet pub ip4 zijn)`  
+`envsubst '$NETHSM_PUB_IPV4' < files/hsm-client/hsm_env_vars.envsubst > files/hsm-client/hsm_env_vars`  
+`envsubst '$NETHSM_PUB_IPV4' < compose.yml.envsubst > compose.yml`  
+
+*NOTE: edit files/hsm-client/hsm_env_vars if you do not want to use passwords from a public GitHub repo!!!*  
 
 docker compose up -d --build  
 docker compose logs
@@ -31,6 +33,9 @@ docker compose logs
 docker compose exec -it hsm-client bash  
 curl $CURLOPTS --user "admin:$ADMINPASS" -X GET $API/users -H 'accept: application/json' | jq .  
 curl $CURLOPTS --user "admin:$ADMINPASS" -X GET $API/namespaces -H 'accept: application/json' | jq .  
+
+From other locations:  
+`curl --silent --insecure --user "admin:adminpass32768" -X GET https://192.168.13.13:32768/api/v1/namespaces -H 'accept: application/json' | jq .`
 
 ## login server
 

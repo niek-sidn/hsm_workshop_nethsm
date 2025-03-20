@@ -15,4 +15,4 @@ Your bankcard could be viewed as an HSM... maybe.\
 If you have a modern computer or laptop, you could have a TPM (Trusted Platform Module) inside it, these have a lot in common with an HSM.
 
 --------------------
-[Next](https://github.com/niek-sidn/hsm_workshop/blob/main/Slide05.md)
+[Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide05.md)

@@ -71,7 +71,7 @@ Support: help available, and under what conditions? 24x7x356? How fast?\
 Support: can bugfixes be submitted in an acceptable way, and will the be acted upon?\
 Support: on-line knowledge base, or all questions "call support"\
 Support: open source, code accessible\
-Support: Support "more or less in person" or ticketing\
+Support: Support "more or less in person" or ticketing
 
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide06.md)
 

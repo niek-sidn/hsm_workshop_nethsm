@@ -56,6 +56,7 @@ If you will be using a shell on your laptop directly or in a VM or container, ma
 
 * opensc  # make sure it is version 0.23 or higher, Ubuntu 24.04 and Debian 12 are good.
 * dig (or equivalent)  # apt: dnsutils
+* wget
 * xxd
 * openssl
 * *optional*: libtpm2-pkcs11-tools, libtpm2-pkcs11-1

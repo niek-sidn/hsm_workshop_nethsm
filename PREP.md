@@ -41,7 +41,7 @@ From other locations:
 
 ## login server
 
-`apt-get update && apt-get upgrade -y \`  
+`apt-get update && apt-get upgrade -y && apt-get install -y git ca-certificates curl \`  
 `&& curl -fsSL https://pkgs.zabbly.com/key.asc -o /etc/apt/keyrings/zabbly.asc \`  
 `&& chmod a+r /etc/apt/keyrings/zabbly.asc \`  
 `&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/zabbly.asc] https://pkgs.zabbly.com/incus/stable $(. /etc/os-release && echo "$VERSION_CODENAME") main" | sudo tee /etc/apt/sources.list.d/zabbly.list > /dev/null \`  

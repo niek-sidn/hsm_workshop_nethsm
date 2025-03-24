@@ -64,7 +64,7 @@ On kernels <5 this drops on intensive use of /dev/random (e.g. `od -d /dev/rando
 ---
 Random from an HSM on the net 1  
 ```bash
-echo $CURLOPTS $OPERATOR $OPASS $API
+cat hsm_env_vars
 curl $CURLOPTS --user "$OPERATOR:$OPASS" -X POST $API/random -H 'accept: application/json' -H 'Content-Type: application/json' -d '{ "length": 4 }' | jq -r .random | base64 -d | xxd -p -c 64
 ```
 
@@ -72,7 +72,8 @@ curl $CURLOPTS --user "$OPERATOR:$OPASS" -X POST $API/random -H 'accept: applica
 Random from an HSM on the net 2  
 (pkcs11-tool will be explained later)  
 ```
-pkcs11-tool --module /usr/local/lib/nethsm/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so --generate-random 4 | xxd -c 64 -p
+pkcs11-tool --module /usr/local/lib/nethsm/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so --generate-random 4 | xxd -c 64 -p  
+# or pkcs11-tool --module $SO_LOC --generate-random 4 | xxd -c 64 -p  
 ```
 
 ---------------

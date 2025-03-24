@@ -1,7 +1,7 @@
 # hsm_workshop_nethsm
 
 ## NetHSM Server
-(incus launch images:ubuntu/noble --vm nethsmserver)
+(incus launch images:ubuntu/noble --vm nethsmserver)  
 Create an Equinix host with:  
   Ubuntu Noble  
   hostname centr-dublin01  
@@ -42,7 +42,7 @@ From other locations:
 `curl --silent --insecure --user "admin:adminpass32768" -X GET https://192.168.13.13:32768/api/v1/namespaces -H 'accept: application/json' | jq . #(use actual pub ip4 of the nethsmserver and the actual password)`  
 
 ## login server
-(incus launch images:ubuntu/noble --vm shellserver)
+(incus launch images:ubuntu/noble --vm shellserver)  
 Create an Equinix host with:  
   Ubuntu Noble  
   hostname centr-dublin02  
@@ -57,7 +57,7 @@ after it is up:
 `&& curl -fsSL https://pkgs.zabbly.com/key.asc -o /etc/apt/keyrings/zabbly.asc \`  
 `&& chmod a+r /etc/apt/keyrings/zabbly.asc \`  
 `&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/zabbly.asc] https://pkgs.zabbly.com/incus/stable $(. /etc/os-release && echo "$VERSION_CODENAME") main" | sudo tee /etc/apt/sources.list.d/zabbly.list > /dev/null \`  
-`&& systemctl enable --now ssh`  
+`&& systemctl enable --now ssh \`  
 `&& apt-get update && apt-get install -y incus`  
 
 `git clone https://github.com/niek-sidn/hsm_workshop_nethsm.git`  
@@ -88,7 +88,7 @@ after it is up:
 
 `export USERPASS=$(pwgen 10 1)`  
 `echo ${USERPASS}`  
-`e.g. XXXXX-XXXXX`   
+`e.g. XXXXX-XXXXX`  
 `for X in {1..3}; do`  
 `export NS=ns${X}`  
 `envsubst '$NS' < hsm_workshop_nethsm/files/p11nethsm.conf >  hsm_workshop_nethsm/files/p11nethsm.conf-${X}`  
@@ -100,10 +100,11 @@ after it is up:
 `incus exec user${X} -- mkdir -p /usr/local/lib/nethsm/`  
 `incus exec user${X} -- apt install -y wget opensc curl jq`  
 `incus file push /root/hsm_workshop_nethsm/files/part_env_vars-${X} user${X}/root/hsm_env_vars`  
-`incus file push /root/hsm_workshop_nethsm/files/bashrc user${X}/root/.bashrc`  
+`incus file push /root/hsm_workshop_nethsm/files/hsm-client/bashrc user${X}/root/.bashrc`  
 `incus file push /root/hsm_workshop_nethsm/files/p11nethsm.conf-${X} user${X}/usr/local/etc/nitrokey/p11nethsm.conf`  
 `incus file push /root/hsm_workshop_nethsm/files/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so user${X}/usr/local/lib/nethsm/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so`  
 `done`  
+`echo ${USERPASS}`  
 
 
 #### Enter user container as root

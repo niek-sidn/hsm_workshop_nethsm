@@ -64,7 +64,8 @@ On kernels <5 this drops on intensive use of /dev/random (e.g. `od -d /dev/rando
 ---
 Random from an HSM on the net 1  
 ```bash
-curl --silent --insecure --user "ns1~operator:ZeCr3Tz-ns1" -X POST https://10.103.187.86:32768/api/v1/random -H 'accept: application/json' -H 'Content-Type: application/json' -d '{ "length": 4 }' | jq -r .random | base64 -d | xxd -p -c 64
+echo $CURLOPTS $OPERATOR $OPASS $API
+curl $CURLOPTS --user "$OPERATOR:$OPASS" -X POST $API/random -H 'accept: application/json' -H 'Content-Type: application/json' -d '{ "length": 4 }' | jq -r .random | base64 -d | xxd -p -c 64
 ```
 
 ---

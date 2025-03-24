@@ -1,4 +1,4 @@
-export NETHSM_HOST="172.20.0.18:8443"
+export NETHSM_HOST="172.20.0.18:8443"  # see compose.yml.envsubst
 export ALLOW_ROOT=1
 export NETHSMOPTS="--no-verify-tls --host $NETHSM_HOST"
 export ADMINPASS="adminpass32768"
@@ -9,3 +9,5 @@ export BACKUPUSERPASS="backupuserpass32768"
 export BACKUPPASS="backuppass32768"
 export CURLOPTS=' --silent --insecure '
 export API="https://${NETHSM_HOST}/api/v1"
+export PARTPASS_A="t0PZeCr3Tz"
+export PARTPASS_O="ZeCr3Tz"

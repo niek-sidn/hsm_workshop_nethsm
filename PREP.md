@@ -98,7 +98,7 @@ after it is up:
 `sleep 2`  
 `incus exec user${X} -- mkdir -p /usr/local/etc/nitrokey/`  
 `incus exec user${X} -- mkdir -p /usr/local/lib/nethsm/`  
-`incus exec user${X} -- apt install -y wget opensc curl jq`  
+`incus exec user${X} -- apt install -y wget opensc curl jq softhsm2`  
 `incus file push /root/hsm_workshop_nethsm/files/part_env_vars-${X} user${X}/root/hsm_env_vars`  
 `incus file push /root/hsm_workshop_nethsm/files/hsm-client/bashrc user${X}/root/.bashrc`  
 `incus file push /root/hsm_workshop_nethsm/files/p11nethsm.conf-${X} user${X}/usr/local/etc/nitrokey/p11nethsm.conf`  

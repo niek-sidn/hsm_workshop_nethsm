@@ -13,7 +13,7 @@ slots:
       password: "adminpass32768"
 
     instances:
-      - url: "https://10.0.0.0:32768/api/v1"
+      - url: "https://${NETHSM_PUB_IPV4}:32768/api/v1"
         danger_insecure_cert: true
 
     retries:

@@ -12,30 +12,30 @@ fi
 
 STATE=''
 while [[ ${STATE} == '' ]]; do
-  STATE=$(curl --silent --insecure https://${NETHSM_HOST}/api/v1/health/state | jq -r '.state')
+  STATE=$(curl $CURLOPTS $API/health/state | jq -r '.state')
   sleep 1
 done;
 
 if [[ ${STATE} == "Unprovisioned" ]]; then
   echo "$(date) Provisioning NetHSM"
-  curl -s --insecure -X 'POST' "https://${NETHSM_HOST}/api/v1/provision" \
+  curl $CURLOPTS -X 'POST' "$API/provision" \
   -H 'accept: */*' -H 'Content-Type: application/json' \
   -d '{"unlockPassphrase": "'${UNLOCKPASS}'", "adminPassphrase": "'${ADMINPASS}'", "systemTime": "'$(date +%FT%TZ)'"}'
-  curl -s --user "admin:${ADMINPASS}" --insecure -X 'PUT' "https://${NETHSM_HOST}/api/v1/config/unattended-boot" \
+  curl $CURLOPTS --user "admin:${ADMINPASS}" -X 'PUT' "$API/config/unattended-boot" \
   -H 'accept: */*' -H 'Content-Type: application/json' \
   -d '{"status": "on"}'
-  curl -s --user "admin:${ADMINPASS}" --insecure -X 'PUT' "https://${NETHSM_HOST}/api/v1/users/operator" \
+  curl $CURLOPTS --user "admin:${ADMINPASS}" -X 'PUT' "$API/users/operator" \
   -H 'accept: */*' -H 'Content-Type: application/json' \
   -d '{"realName": "Nitrokey Operator", "role": "Operator", "passphrase": "'${OPERATORPASS}'"}'
-  curl -s --user "admin:${ADMINPASS}" --insecure -X 'PUT' "https://${NETHSM_HOST}/api/v1/users/metrics" \
+  curl $CURLOPTS --user "admin:${ADMINPASS}" -X 'PUT' "$API/users/metrics" \
   -H 'accept: */*' -H 'Content-Type: application/json' \
   -d '{"realName": "Nitrokey Metrics", "role": "Metrics", "passphrase": "'${METRICSPASS}'"}'
-  curl -s --user "admin:${ADMINPASS}" --insecure -X 'PUT' "https://${NETHSM_HOST}/api/v1/users/backup" \
+  curl $CURLOPTS --user "admin:${ADMINPASS}" -X 'PUT' "$API/users/backup" \
   -H 'accept: */*' -H 'Content-Type: application/json' \
-  -d '{"realName": "Nitrokey Backup", "role": "Backup", "passphrase": "'${BACKUPPASS}'"}'
-  curl -s --user "admin:${ADMINPASS}" --insecure -X 'PUT' "https://${NETHSM_HOST}/api/v1/config/backup-passphrase" \
+  -d '{"realName": "Nitrokey Backup", "role": "Backup", "passphrase": "'${BACKUPUSERPASS}'"}'
+  curl $CURLOPTS --user "admin:${ADMINPASS}" -X 'PUT' "$API/config/backup-passphrase" \
   -H 'accept: */*' -H 'Content-Type: application/json' \
-  -d '{"newPassphrase": "t0PZeCr3Tz", "currentPassphrase": ""}'
+  -d '{"newPassphrase": "'${BACKUPPASS}'", "currentPassphrase": ""}'
   for X in {1..30}; do
     NS=ns${X}
     echo $NS

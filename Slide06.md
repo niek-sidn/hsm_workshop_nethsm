@@ -62,12 +62,17 @@ cat /proc/sys/kernel/random/entropy\_avail
 On kernels <5 this drops on intensive use of /dev/random (e.g. `od -d /dev/random`)
 
 ---
+Random from an HSM on the net 1  
+```bash
+curl --silent --insecure --user "ns1~operator:ZeCr3Tz-ns1" -X POST https://10.103.187.86:32768/api/v1/random -H 'accept: application/json' -H 'Content-Type: application/json' -d '{ "length": 4 }' | jq -r .random | base64 -d | xxd -p -c 64
+```
 
-**After** the PKSC11 exercises you can revisit this exercise and try:
+---
+Random from an HSM on the net 2  
+(pkcs11-tool will be explained later)  
 ```
-pkcs11-tool --module /usr/lib/softhsm/libsofthsm2.so --token Token1 --generate-random 64 | xxd -c 64 -p
+pkcs11-tool --module /usr/local/lib/nethsm/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so --generate-random 4 | xxd -c 64 -p
 ```
-Here we see random from an HSM
 
 ---------------
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide07.md)

@@ -1,0 +1,10 @@
+# Keep synchronized with hsm_env_vars.envsubst
+# To be sourced in by .bashrc
+# After envsubst
+export NETHSM_PUB_IPV4="${NETHSM_PUB_IPV4}"
+export CURLOPTS=' --silent --insecure '
+export API="https://${NETHSM_PUB_IPV4}:32768/api/v1"
+export ADMIN="${NS}~admin"
+export OPERATOR="${NS}~operator"
+export APASS="${PARTPASS_A}-${NS}"
+export OPASS="${PARTPASS_O}-${NS}"

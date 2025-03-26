@@ -30,9 +30,6 @@ But, both are not true HARDWARE security modules and your secret keys are **in R
 
 *Nice*: SoftHSM2 is a **drop in** for a real HSM, this means you have to change very little when switching to a real HSM.
 
-A new but similar project is "kryoptic", a [pkcs11 soft token written in rust](https://github.com/latchset/kryoptic), also see [this blog by rcritten](https://rcritten.wordpress.com/2024/10/01/trying-a-new-pkcs11-driver-kryoptic/).  
-A pre-build Kryoptic is included in the github repository of this workshop, works on Ubuntu Noble and Debian Bookworm YMMV.
-
 --------------------
 ## Exercise "Introducing SoftHSM2 by NLnet Labs"
 If you are **not** using the SIDN provided login server **and** not running as root:

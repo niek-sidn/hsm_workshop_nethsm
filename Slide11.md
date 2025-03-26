@@ -4,7 +4,7 @@
 Thanks to them you can use it for **free**. [link](https://github.com/opendnssec/SoftHSMv2)
 
 *But* it has **no networking** and it needs to be installed on the server that needs to use the HSM,  
-unless you are able to bolt on some networking. E.g. by using p11-kit in server mode.
+unless you are able to bolt-on some networking. E.g. by using p11-kit in server mode.
 
 [p11-glue 0.25 (includes p11-kit): using PKCS#11 to unite crypto libraries](https://p11-glue.github.io/p11-glue/p11-kit.html)
 
@@ -20,74 +20,90 @@ unless you are able to bolt on some networking. E.g. by using p11-kit in server 
 
 [An OpenSC GitHub issue on the subject](https://github.com/OpenSC/libp11/issues/437)
 
-*Please note:* SoftHSM2 is an excellent tool for testing, saving you a lot of money. But, as you can see from its contradictory name, it is no true HARDWARE security module and your secret keys are **in RAM** on your server that also hosts the software using it (and this software is possibly exposed to the internet).  
+**Kryoptic** A new, but similar, project is "kryoptic", a [pkcs11 soft token written in rust](https://github.com/latchset/kryoptic), also see [this blog by rcritten](https://rcritten.wordpress.com/2024/10/01/trying-a-new-pkcs11-driver-kryoptic/).  
+A pre-build Kryoptic is included in the github repository of this workshop, works on Ubuntu Noble and Debian Bookworm YMMV.
+
+*Also* it has no **networking**.
+
+*Please note:* SoftHSM2, and Kryoptic are both excellent tools for testing, saving you a **lot** of money.  
+But, both are not true HARDWARE security modules and your secret keys are **in RAM** on the server that also hosts the software using it. And this software is possibly exposed to the internet.  
 
 *Nice*: SoftHSM2 is a **drop in** for a real HSM, this means you have to change very little when switching to a real HSM.
 
 A new but similar project is "kryoptic", a [pkcs11 soft token written in rust](https://github.com/latchset/kryoptic), also see [this blog by rcritten](https://rcritten.wordpress.com/2024/10/01/trying-a-new-pkcs11-driver-kryoptic/).  
-I used to be able to build it, but alas.
+A pre-build Kryoptic is included in the github repository of this workshop, works on Ubuntu Noble and Debian Bookworm YMMV.
 
 --------------------
 ## Exercise "Introducing SoftHSM2 by NLnet Labs"
+If you are **not** using the SIDN provided login server **and** not running as root:
 ```bash
-** sudo -i OR su - **
-apt update
+# sudo -i OR su -
 apt install -y softhsm2 man sudo
-usermod -aG softhsm <your username>   ### !!! so non-root user can read /etc/softhsm/softhsm2.conf
+usermod -aG softhsm your_username   ### !!! so non-root user can read /etc/softhsm/softhsm2.conf
+usermod -aG sudo your_username      ### !!! make sure your non-root user can use sudo
 ```
 ------------
-SoftHSM has virtual **"slots"**, in which **"tokens"** can be placed (like a card reader or USB port)\
-***Token is just the term used for a device or virtual device that can do crypto operations, (like a smartcard or an USB-HSM).***\
-A token can contain lots of key objects.\
+SoftHSM has virtual **"slots"**, in which a **"token"** is automatically placed (like a card reader or USB port)  
+***Token is just the term used for a device or virtual device that can do crypto operations, (like a smartcard or an USB-HSM).***    
+SoftHSM just creates a new slot for every token you initialise.  
+Kryoptic does the oposite, it creates a (single) token if you initialise a slot.  
+Nitrokey NetHSM has only 1 slot with only 1 token, but it has 'namespaces' and every namespace has its own slot-token  
+Thales has 'partitions' that function as as complete virtual HSM and are used as a slot-token.  
+Take away: Different vendors do things differently.
+
+A token can contain lots of key objects.  
 [illustration](https://github.com/tpm2-software/tpm2-pkcs11/blob/master/docs/illustrations/reader-slot-token-obj.png)
 ```bash
 sudo softhsm2-util --show-slots
 softhsm2-util --show-slots
+# note: these are 2 different virtual card readers if you are running as a non-root user
 ```
-Slots are numbered, but there always an empty slot available/created for a new token slot.\
-SoftHSM keeps its users separated, user_x cannot list user_y's slots. But root sees all.
+Slots are numbered, but SoftHSM always has an empty slot available/created for a new token slot.  
+SoftHSM keeps its users separated, user_x cannot list user_y's slots. *But root sees all*.
 
-**Note:** Here you meet for the first time a **vendor tool** for using an HSM.\
-SoftHSM -> softhsm2-util\
-Thales -> lunacm, vtl, etc.\
-NitroKey -> nitropy\
-Also: OpenDNSSEC -> ods-hsmutil (not an HSM vendor, also: the HSM is not addressed directly)\
+**Note:** Here you meet for the first time a **vendor tool** for using an HSM.  
+SoftHSM -> softhsm2-util  
+Thales -> lunacm, vtl, etc.  
+NitroKey NetHSM -> nitropy  
+Kryoptic -> no tool available afaik  
+Also: OpenDNSSEC -> ods-hsmutil (not an HSM vendor, also: the HSM is not addressed directly)  
 Also: Knot -> keymgr (not an HSM vendor, also: the HSM is not addressed directly)
 
 ---------------------------------
 
-RTFM:
+####RTFM:
 ```bash
 man softhsm2-util
 ```
-Here you read what it is, and what it does: list, init, delete, import, user management.
-But you'll see **no 'encrypt' or 'sign' commands** and you cannot just give SoftHSM a file and expect it to be signed or encrypted.
+Here you read what it is, and what it does: list, init, delete, import, user management.  
+But you'll see **no 'encrypt' or 'sign' commands** and you cannot just give SoftHSM a file 
+and expect it to be signed or encrypted.
 You need middleware, more on that later!
 
 -------------
-Your first token
+####Your first token
 ```bash
 softhsm2-util --init-token --free --label "Token1" --pin 0000 --so-pin 1234  # owned by current user!
 softhsm2-util --show-slots     # use sudo if you want to see all slots
 ```
-Notice that a token has been "inserted" (with an unexpected number), and a new free slot was created (also with an unexpected number).\
+Notice that a token has been "inserted" (with an unexpected number), and a new free slot was created (also with an unexpected number)  
 (--free just means: use first empty slot, so you do not have to look first)
 
-The pin is a PIN (password) for using the token, but why twice? Because there are **2 users/roles** in SoftHSM.\
-In SoftHSM the normal user can do crypto operations using the key objects in the token, and create or destroy tokens.\
+The pin is a PIN (password) for using the token, but why twice? Because there are **2 users/roles** in SoftHSM.  
+In SoftHSM the normal user can do crypto operations using the key objects in the token, and create or destroy tokens.  
 In SoftHSM the Security officer ("SO") can reinitialise a token, not much else can be known from the documentation.
 
 -------------
-**NOTE** no keys are in this token yet! The token is just the cryptomodule, and softhsm2-util is not the tool for creating keys.
+**NOTE** no keys are on this token yet! The token is just the cryptomodule, and softhsm2-util is not the tool for creating keys.
 ```bash
 cat /etc/softhsm/softhsm2.conf
-ls -lR /var/lib/softhsm/tokens/
+ls -lR /var/lib/softhsm/tokens/  # use sudo if you want to see all slots
 ```
-Note: if you compiled SoftHSM yourself, according to my recipe, you should have an Sqlite3 db in /var/lib/softhsm/tokens/.\
-      try: sqlite3 /var/lib/softhsm/tokens/....../sqlite3.db and command .dump to see all (hint: .quit/.help).
+Note: if you compiled SoftHSM yourself, you could have an Sqlite3 db in /var/lib/softhsm/tokens/  
+try: sqlite3 /var/lib/softhsm/tokens/....../sqlite3.db and the command .dump to see all (hint: .quit/.help).
 
 Please note: As I mentioned earlier, SoftHSM isolates its slots/tokens, a token created by a user is unavailable to other users.
 This means that if you are creating tokens for a different user (e.g. Bind, Knot, OpenDNSsec) you need to use sudo. You'll learn this later.
 
 -------------------
-[Next](https://github.com/niek-sidn/hsm_workshop/blob/main/Slide12.md)
+[Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide12.md)

@@ -1,23 +1,23 @@
 ------------------------------
 ## What's in it?
-At a minimum, an HSM appliance should contain a **crypto module**.\
+At a minimum, an HSM appliance should contain a **crypto module**.  
 This is a closed-off 'mini computer' with its own CPU and RAM and
-storage inside the appliance/card/stick.\
+storage inside the appliance/card/stick.  
 This module handles all encryption and signing, also stores the keys (or
-maybe a key to all keys).\
+maybe a key to all keys).  
 All "other stuff" like e.g. networking and api-interfacing is handled
-by parts outside this crypto module.\
+by parts outside this crypto module.  
 The crypto module in most cases has a very limited interface, you are probably not allowed to log into it.
 
-An HSM should contain an **HRNG** (hardware random number generator),\
+An HSM should contain an **HRNG** (hardware random number generator),  
 because secure key generation is very dependent on a good source of random numbers.
 
 A Linux/Windows server in most cases has no HRNG, but it uses tricks to
-create real random.\
+create real random.  
 E.g. harvesting the Xth decimal of all execution times of processes, or
-in the past also timings of key-presses or mouse movement (that was useless on a headless server...).\
+in the past also timings of key-presses or mouse movement (that was useless on a headless server...).  
 A good key generator will use a blocking random device and wait for new
-real random bits if this device cannot deliver yet.\
+real random bits if this device cannot deliver yet.  
 Especially when creating keys: a predictable key may lead to the worst false sense of security.
 
 ------------
@@ -61,21 +61,24 @@ cat /proc/sys/kernel/random/entropy\_avail
 ```
 On kernels <5 this drops on intensive use of /dev/random (e.g. `od -d /dev/random`)
 
+## Exercise "Random from an HSM"
 ---
-Random from an HSM on the net 1  
+####Random from an HSM on the net 1  
 ```bash
 cat hsm_env_vars
 curl $CURLOPTS --user "$OPERATOR:$OPASS" -X POST $API/random -H 'accept: application/json' -H 'Content-Type: application/json' -d '{ "length": 4 }' | jq -r .random | base64 -d | xxd -p -c 64
 ```
+This works because this specific HSM offers an HTTP interface.
 
 ---
-Random from an HSM on the net 2  
+####Random from an HSM on the net 2  
 (pkcs11-tool will be explained later)  
 ```
 cat /usr/local/etc/nitrokey/p11nethsm.conf
 pkcs11-tool --module /usr/local/lib/nethsm/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so --generate-random 4 | xxd -c 64 -p
 # or pkcs11-tool --module $SO_NETHSM --generate-random 4 | xxd -c 64 -p
 ```
+An HSM is pretty much guaranteed th have a PKCS#11 interface
 
 ---------------
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide07.md)

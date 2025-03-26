@@ -1,35 +1,24 @@
-
 ---------------
-## Salt (continued)
+## Use of random: IV
+A lot of HSMs also offer *symmetric encryption and decryption*.  
+E.g. AES. AES does not use salt, but it does need some random: the initialisation vector.  
+An IV has a different purpose: with a different IV, even identical input and an identical key will
+give you different output every time.  
+Otherwise the enemy will probably recognize your "Attack at dawn!" message from last time you thought starting a war was a solution to your problems.
 
-The KSK-ZSK "key-subkey" mechanism is nice, you do not have to contact
-IANA every time you change a key.  
-But knowing the above, a ZSK also "protects" the KSK against
-over-use (for too long, too often(?)).  
-You use the KSK only when signing a new DNSKEY RRset, probably < 10
-times per year.  
-You use a ZSK every time an RRSIG expires, probably hundreds of thousands
-of times per year (if not millions).  
-ZSK rolling is important: If the baddies have your signing key, they can
-create a valid signature on a malicious RR.
-
-Also: this is the reason your SSL/TLS (e.g. https) certificate has a
-certificate chain (the intermediate certificates are their ZSK).  
-Paranoia bonus: you could keep your KSK, or a root-certificate
-completely off-line, or even on a stick in a safe (until needed for
-signing a new DNSKEY RRset)
-
-E.g. the initialization vector (IV) of AES could be seen as a salt,
-but it serves a different purpose: salt is used in hashing and prevents against prehashing,  
-IV is used in encryption and prevents agains getting the same crypttext when having the same plaintext & password.
+Later on you will learn to use an HSM for symmetric encryption and decryption,  
+but at this stage let's not bite of more than we can chew:
 
 ---------------------
 ## Exercise "Cyberchef, your tool for all things crypto"
-Visit: [CyberChef](https://cyberchef.io/#recipe=AES_Decrypt(%7B'option':'UTF8','string':'my_key1234567890'%7D,%7B'option':'UTF8','string':'0000000000000000'%7D,'CBC','Hex','Raw',%7B'option':'Hex','string':''%7D,%7B'option':'Hex','string':''%7D)&input=NDBiNmJhMWM1ZDI0ZDkzZjEwYmFhZTkzYzRmN2E5NzNhOGQ5YzQ4MDBiYmUyZmM0MzRlMTZiMTVjNzNjYTUxZg)
+- Visit: [CyberChef](https://cyberchef.io/#recipe=AES_Decrypt(%7B'option':'UTF8','string':'my_key1234567890'%7D,%7B'option':'UTF8','string':'0000000000000000'%7D,'CBC','Hex','Raw',%7B'option':'Hex','string':''%7D,%7B'option':'Hex','string':''%7D)&input=NDBiNmJhMWM1ZDI0ZDkzZjEwYmFhZTkzYzRmN2E5NzNhOGQ5YzQ4MDBiYmUyZmM0MzRlMTZiMTVjNzNjYTUxZg)
 
-Now change the IV, but not the key and input. Here IV and salt differ!
+Now change the IV, but not the key and input. E.g. change the first zero to a 1.  
+This is an area where IV and salt differ!  
+As proof change my 1234 salt to 1235 [here](https://cyberchef.io/#recipe=SHA2('256',64,32)&input=MTIzNCNIU01zIGFyZSBzbyBjb29s)
 
-By the way, the inverse operation is [this](https://cyberchef.io/#recipe=AES_Encrypt(%7B'option':'UTF8','string':'my_key1234567890'%7D,%7B'option':'UTF8','string':'0000000000000000'%7D,'CBC','Raw','Hex',%7B'option':'Hex','string':''%7D)&input=VGhpcyBpcyB0b3Agc2VjcmV0ISEh)
+By the way, an example of AES *encryption* is [this](https://cyberchef.io/#recipe=AES_Encrypt(%7B'option':'UTF8','string':'my_key1234567890'%7D,%7B'option':'UTF8','string':'0000000000000000'%7D,'CBC','Raw','Hex',%7B'option':'Hex','string':''%7D)&input=QXR0YWNrIGF0IGRhd24hISE)
+(To confuse the enemy, change the IV for every instance of this message you send!)
 
 Have a look at the left, see what CyberChef can do for you.
 

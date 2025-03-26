@@ -1,6 +1,6 @@
 ---------------
 ## HSM? NOT!
-Arguments against using an HSM:
+Arguments *against* using an HSM:
 
 -   More **Complexity** in your setup = higher risk of human error
     -   Complex roles and operations (*?!?How many times you say I need to enter the PIN for the blue token!?!*)
@@ -12,7 +12,7 @@ Arguments against using an HSM:
     Move to a different vendor could mean a KSK roll, the keys are locked inside!
 -   Sometimes **overkill** (e.g. no FIPS required or tamper proofing is not needed)
 -   **SoftHSM** used to *not* be recommended for production use by NLnetLabs (people do this anyway).  
-    Recently I was unable to locate this statement.
+    Recently I was unable to locate this statement, but it may still not be the right choice.
 -   **Long lived secrets**, think: encrypted document archive. Probably dependent on your ability to keep the keys available for longer than the life of the HSM.  
     (solutions: more than 1 HSM in HA setup / backups that are readable by the next HSM / key creation outside the HSM + import & store in safe)
 

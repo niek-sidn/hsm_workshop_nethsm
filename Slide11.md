@@ -68,7 +68,7 @@ Also: Knot -> keymgr (not an HSM vendor, also: the HSM is not addressed directly
 
 ---------------------------------
 
-####RTFM:
+#### RTFM:
 ```bash
 man softhsm2-util
 ```
@@ -78,7 +78,7 @@ and expect it to be signed or encrypted.
 You need middleware, more on that later!
 
 -------------
-####Your first token
+#### Your first token
 ```bash
 softhsm2-util --init-token --free --label "Token1" --pin 0000 --so-pin 1234  # owned by current user!
 softhsm2-util --show-slots     # use sudo if you want to see all slots

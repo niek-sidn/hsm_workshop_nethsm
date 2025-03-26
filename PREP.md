@@ -109,7 +109,7 @@ systemctl reload ssh
 ```
 
 `export NETHSM_PUB_IPV4="192.168.13.13" #(use actual pub ip4 of the *nethsmserver* host)`  
-`export PARTPASS_A="t0PZeCr3Tz"  # use the same pass as on nethsmserver`   
+`export PARTPASS_A="t0PZeCr3Tz"  # use the same pass as on nethsmserver`  
 `export PARTPASS_O="ZeCr3Tz"  # use the same pass as on nethsmserver`  
 `envsubst '$NETHSM_PUB_IPV4,$PARTPASS_A,$PARTPASS_O' < hsm_workshop_nethsm/files/p11nethsm.conf.envsubst > hsm_workshop_nethsm/files/p11nethsm.conf`  
 `envsubst '$NETHSM_PUB_IPV4,$PARTPASS_A,$PARTPASS_O' < hsm_workshop_nethsm/files/part_env_vars.envsubst > hsm_workshop_nethsm/files/part_env_vars`  
@@ -137,7 +137,7 @@ SUB_GID_MAX		1000000
 `sleep 2`  
 `incus exec user${X} -- mkdir -p /usr/local/etc/nitrokey/`  
 `incus exec user${X} -- mkdir -p /usr/local/lib/nethsm/`  
-`incus exec user${X} -- apt install -y wget opensc curl jq softhsm2`  
+`incus exec user${X} -- apt install -y wget opensc curl jq softhsm2 dnsutils`  
 `incus file push /root/hsm_workshop_nethsm/files/part_env_vars-${X} user${X}/root/hsm_env_vars`  
 `incus file push /root/hsm_workshop_nethsm/files/hsm-client/bashrc user${X}/root/.bashrc`  
 `incus file push /root/hsm_workshop_nethsm/files/p11nethsm.conf-${X} user${X}/usr/local/etc/nitrokey/p11nethsm.conf`  

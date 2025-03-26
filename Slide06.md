@@ -32,7 +32,7 @@ RANDOM=13 && echo $RANDOM
 You got 21880, didn't you?
 
 ---
-Now run twice:
+Now run *twice*:
 ```bash
 echo $RANDOM
 ```
@@ -41,8 +41,8 @@ You got 9438 and 11869 , didn't you?
 ---
 *Now do **both** previous exercises again!*
 
-/dev/urandom generates a predictable, repeatable set of pseudo-random numbers.\
-The begin argument is a starting point, and this can of course be a piece of "good" random from the pool.\
+/dev/urandom generates a predictable, repeatable set of pseudo-random numbers.  
+The begin argument is a starting point, and this can of course be a piece of "good" random from the pool.  
 But it can also be the output of 'date' at reboot.
 > Note: For testing a predictable, repeatable set of pseudo-random numbers can actually be a good thing!
 
@@ -72,8 +72,9 @@ curl $CURLOPTS --user "$OPERATOR:$OPASS" -X POST $API/random -H 'accept: applica
 Random from an HSM on the net 2  
 (pkcs11-tool will be explained later)  
 ```
-pkcs11-tool --module /usr/local/lib/nethsm/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so --generate-random 4 | xxd -c 64 -p  
-# or pkcs11-tool --module $SO_NETHSM --generate-random 4 | xxd -c 64 -p  
+cat /usr/local/etc/nitrokey/p11nethsm.conf
+pkcs11-tool --module /usr/local/lib/nethsm/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so --generate-random 4 | xxd -c 64 -p
+# or pkcs11-tool --module $SO_NETHSM --generate-random 4 | xxd -c 64 -p
 ```
 
 ---------------

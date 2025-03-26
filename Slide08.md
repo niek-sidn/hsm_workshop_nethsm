@@ -17,8 +17,8 @@ Now change the IV, but not the key and input. E.g. change the first zero to a 1.
 This is an area where IV and salt differ!  
 As proof change my 1234 salt to 1235 [here](https://cyberchef.io/#recipe=SHA2('256',64,32)&input=MTIzNCNIU01zIGFyZSBzbyBjb29s)
 
-By the way, an example of AES *encryption* is [this](https://cyberchef.io/#recipe=AES_Encrypt(%7B'option':'UTF8','string':'my_key1234567890'%7D,%7B'option':'UTF8','string':'0000000000000000'%7D,'CBC','Raw','Hex',%7B'option':'Hex','string':''%7D)&input=QXR0YWNrIGF0IGRhd24hISE)
-(To confuse the enemy, change the IV for every instance of this message you send!)
+By the way, an example of AES *encryption* is [this](https://cyberchef.io/#recipe=AES_Encrypt(%7B'option':'UTF8','string':'my_key1234567890'%7D,%7B'option':'UTF8','string':'0000000000000000'%7D,'CBC','Raw','Hex',%7B'option':'Hex','string':''%7D)&input=QXR0YWNrIGF0IGRhd24hISE)  
+(To confuse the enemy, change the IV for every instance of this message you send, and don't forget to include the IV !)
 
 Have a look at the left, see what CyberChef can do for you.
 

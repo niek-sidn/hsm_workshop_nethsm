@@ -1,9 +1,9 @@
 ------------------------
-## Why HSM?
+## Why use an HSM?
 Arguments for using an HSM:
 
 -   **Trust & Safety**
-    -   DNSSEC and TLS/SSL rely heavily on web of trust!
+    -   DNSSEC and TLS/SSL rely heavily on a web of trust!
     -   Safe key storage, Keys never leave the HSM. Keys are not in memory on your servers.
     -   Safe processing, crypto is done in the HSM.
     -   Can you afford to be the weakest link in a chain? Other people could be dependend on you?
@@ -14,11 +14,11 @@ Arguments for using an HSM:
     capable hardware ("offloading")  
     Let your server focus on other stuff. An HSM could maybe handle tens
     of thousands of signatures per second
--   **HA and active-active** are very nice features, could have their own
+-   **High Availability and active-active** are very nice features, could have their own
     use cases.  
     E.g. a new key on HA-HSM1 will be propagated to HA-HSM2 as well.  
 -   **Easy audits**. No need to explain how you secure your keys, because
-    the HSM does all this for you and auditors are familiar with them.
+    the HSM does all secret keeping for you, and auditors are familiar with them.
 
 ---------------------
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide10.md)

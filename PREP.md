@@ -1,7 +1,7 @@
 # hsm_workshop_nethsm
 
 ## NetHSM Server
-(incus launch images:ubuntu/noble --vm nethsmserver)  
+Use `incus launch images:ubuntu/noble --vm nethsmserver` or   
 Create an Equinix host with:  
   Ubuntu Noble  
   hostname centr-dublin01  
@@ -29,7 +29,8 @@ export NETHSM_PUB_IPV4="192.168.13.13" #(use actual pub ip4 of the nethsmserver)
 
 *NOTE: edit files/hsm-client/hsm_env_vars.envsubst if you do not want to use passwords from a public GitHub repo!!!*  
 `vim files/hsm-client/hsm_env_vars.envsubst`  
-`# envsubst from the gettext package, probably already present`  
+`# change admin and operator`  
+`# we use envsubst from the gettext package, probably already present`  
 `envsubst '$NETHSM_PUB_IPV4' < files/hsm-client/hsm_env_vars.envsubst > files/hsm-client/hsm_env_vars`  
 `envsubst '$NETHSM_PUB_IPV4' < compose.yml.envsubst > compose.yml`  
 
@@ -43,8 +44,8 @@ export NETHSM_PUB_IPV4="192.168.13.13" #(use actual pub ip4 of the nethsmserver)
 From other locations:  
 `curl --silent --insecure --user "admin:adminpass32768" -X GET https://192.168.13.13:32768/api/v1/namespaces -H 'accept: application/json' | jq . #(use actual pub ip4 of the nethsmserver and the actual password)`  
 
-## login server
-(incus launch images:ubuntu/noble --vm shellserver)  
+## Login server
+Use `incus launch images:ubuntu/noble --vm shellserver` or  
 Create an Equinix host with:  
   Ubuntu Noble  
   hostname centr-dublin02  
@@ -116,13 +117,16 @@ systemctl reload ssh
 
 ``` bash
 # we are going to make many users, and above 13 we would run out of subuids on the default settings.
-# it is unclear to me why Ubuntu reserve 65353 subuids/gids per system user. Possibly for things like
-# running podman as non-root user. Root's subuids/gids, used bij Incus, are in /etc/subuid & /etc/subgid
+# it is unclear to me why Ubuntu reserves 65353 subuids/gids per system user. Possibly for things like
+# running podman as non-root user. Root's subuids/gids, used by Incus, are in /etc/subuid & /etc/subgid
 vim /etc/login.defs
+...
 SUB_UID_COUNT   1024
 SUB_UID_MAX		1000000
+...
 SUB_GID_COUNT   1024
 SUB_GID_MAX		1000000
+...
 ```
 
 ``` bash
@@ -148,7 +152,7 @@ done
 echo ${USERPASS}
 ```
 
-#### Enter user container as root
+#### Enter user / participant container as root
 `ssh user1@123.123.123.123 #(use actual pub ip4 of the login server)`  
 `password: XXXXX-XXXXX # see echo ${USERPASS} output above`  
 

@@ -5,7 +5,7 @@ Thanks to them you can use it for **free**. [link](https://github.com/opendnssec
 SoftHSM2 is installed on the SIDN provided login server. Else you can probably install it with your package manager.
 
 *But* it has **no networking** and it needs to be installed on the server that needs to use the HSM,  
-unless you are able to bolt-on some networking. E.g. by using p11-kit in server mode.
+unless you are able to bolt-on some proxy for networking. E.g. by using p11-kit in server mode.
 
 [p11-glue 0.25 (includes p11-kit): using PKCS#11 to unite crypto libraries](https://p11-glue.github.io/p11-glue/p11-kit.html)
 
@@ -21,7 +21,8 @@ unless you are able to bolt-on some networking. E.g. by using p11-kit in server 
 
 [An OpenSC GitHub issue on the subject](https://github.com/OpenSC/libp11/issues/437)
 
-**Kryoptic** A new, but similar, project is "kryoptic", a [pkcs11 soft token written in rust](https://github.com/latchset/kryoptic), also see [this blog by rcritten](https://rcritten.wordpress.com/2024/10/01/trying-a-new-pkcs11-driver-kryoptic/).  
+**Kryoptic** Is a new, but similar, project to create a software HSM emulator and reference implementation in Rust:  
+[link](https://github.com/latchset/kryoptic), also see [this blog by rcritten](https://rcritten.wordpress.com/2024/10/01/trying-a-new-pkcs11-driver-kryoptic/).  
 A pre-build Kryoptic is included in the github repository of this workshop, works on Ubuntu Noble and Debian Bookworm YMMV.
 
 *Also* it has no **networking**.
@@ -29,7 +30,7 @@ A pre-build Kryoptic is included in the github repository of this workshop, work
 *Please note:* SoftHSM2, and Kryoptic are both excellent tools for testing, saving you a **lot** of money.  
 But, both are not true HARDWARE security modules and your secret keys are **in RAM** on the server that also hosts the software using it. And this software is possibly exposed to the internet.  
 
-*Nice*: SoftHSM2 is a **drop in** for a real HSM, this means you have to change very little when switching to a real HSM.
+*Nice*: SoftHSM2 is a **drop-in** for a real HSM, this means you have to change very little when switching to a real HSM.
 
 --------------------
 ## Exercise "Introducing SoftHSM2 by NLnet Labs"

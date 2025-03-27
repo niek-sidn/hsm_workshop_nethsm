@@ -1,7 +1,8 @@
 -------------
 ## Your very own HSM! (sort of)
 **SoftHSM2** is a software HSM emulator and reference implementation by NLnet Labs.  
-Thanks to them you can use it for **free**. [link](https://github.com/opendnssec/SoftHSMv2)
+Thanks to them you can use it for **free**. [link](https://github.com/opendnssec/SoftHSMv2)  
+SoftHSM2 is installed on the SIDN provided login server. Else you can probably install it with your package manager.
 
 *But* it has **no networking** and it needs to be installed on the server that needs to use the HSM,  
 unless you are able to bolt-on some networking. E.g. by using p11-kit in server mode.

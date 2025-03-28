@@ -1,77 +1,103 @@
-### Other considerations, e.g. when making a choice between software- or hardware- or cloud- HSM.
+## Other considerations
+*e.g. when making a choice between software- or hardware- or cloud- HSM.*
 
-Available tooling: api, library/driver, gui, cli, cloud-integration\
-Available tooling: configurable by you or as-is product\
-Available tooling: Fitting prefered tooling at your organisatien (e.g. OpenDNSSEC, BIND)\
-Available tooling: public (api-accessible?) repo vs. sign-in required\
-Available tooling: tooling available for OS(version) we want? packaged or unicorn-install?\
-Available tooling: version information available? How are new versions communicated?\
-Backup: included or "left as an exercise"\
-Backup: is restore possible in a safe manner?\
-Capacity: FIPS and other certifications\
-Capacity: Number of keys\
-Capacity: Number of partitions\
-Capacity: signing algorithms\
-Company policy/image: "best proven technology"\
-Company policy/image: "promote open source"\
-Company policy/image: "delivers 'Trust', befitting your company goal and public image.\
-Company policy/image: "keep up in-house DNSSEC expertise, autonomy"\
-Continuity: hsm functionality networked or not\
-Continuity: key synchronization\
-Continuity: load balancing / High Availability / Active-Active\
-Continuity: maintenance possible without interrupting service?\
-Continuity: feasability of an exit or a switch to another supplier\
-Costs: deprecation, expected/limited life time, sustainability\
-Costs: surcharges\
-Costs: finance tools, predictable costs?\
-Costs: licences, licence type, licences that could be blocking when scaling?\
-Disaster recovery and prevention: roll out in phases possible?\
-Disaster recovery and prevention: geographical "spreadedness"\
-Disaster recovery and prevention: keys importable / exportable.\
-Disaster recovery and prevention: fitting offline KSK scenario\
-Disaster recovery and prevention: protection against power faillure etc.\
-Disaster recovery and prevention: roll-backs for upgrades?\
-Disaster recovery: time between disaster and recovery\
-Disaster recovery: upgrades available to us or automatic updates behind the scenes in the cloud?\
-Disaster recovery: upgrades and patches testable in acceptance?\
-Disaster recovery: backup keys in physical device in your political region?\
-Marketability: can be used by other internal users for signing / encryption / decryption\
-Marketability: surplus capacity can be made available to 3rd party?\
-Monitoring: alerting, or alerting tool of our choice\
-Monitoring: metrics, logs, snmp, splunk/influx/prometheus-agent\
-Capacity: signatures per second\
-Capacity: time to create, sign and publish zone\
-Risk: scaling, what if you need more?\
-Risks: "(changes in) public opinion"-proof?\
-Risks: are you mostly in control? e.g. is it clear what happened to the hsm and/or its functionality last (insert_time_period)?)\
-Risks: future-proof maintenance, not end-of-life product\
-Risks: proven technology or not\
-Risks: solitary maintainer, uncooperative maintainer\
-Risks: spare parts\
-Risks: unwanted hosting party access, agency access\
-Security: how are incidents and patches communicated?\
-Security: isolation tennants/partitions\
-Security: key-logger protection (e.g. PEDs) between keyboard and cryptomodule\
-Security: secure/encrypted communication between all parts.\
-Security: security patches, clear patch process\
-Security: auditability, audit trail\
-Security: lockable, auto-locking\
-Security: login access to the appliance or software for operations like adding users.\
-Security: M of N based authentication\
-Security: Password based access to HSM functionalities vs. certificate or token based\
-Security: physical anti-theft\
-Security: potential for 3rd party access\
-Security: role based access\
-Security: secure wipe of keys (decommission)\
-Security: small or bigger attack surface? lowest number of services/open ports?\
-Security: tamperproofness\
-Support: Do we get premium support or are we "just one of many customers".\
-Support: Documentation/education available to keep you up-to-date? Best practise guides?\
-Support: help available, and under what conditions? 24x7x356? How fast?\
-Support: can bugfixes be submitted in an acceptable way, and will the be acted upon?\
-Support: on-line knowledge base, or all questions "call support"\
-Support: open source, code accessible\
-Support: Support "more or less in person" or ticketing
+#### Available tooling:
+  * Api, library/driver, gui, cli, cloud-integration
+  * Configurable by you? or as-is product?
+  * Fitting prefered tooling at your organisatien (e.g. OpenDNSSEC, BIND)
+  * Public (api-accessible?) repo vs. sign-in required
+  * Tooling available for OS(version) we want? packaged or unicorn-install?
+  * Version information available? How are new versions communicated?
+
+#### Backup:
+  * Included or "left as an exercise"
+  * Is restore possible in a safe manner?
+
+#### Capacity:
+  * FIPS and other certifications
+  * Number of keys
+  * Number of partitions
+  * Which signing algorithms
+
+#### Company policy/image:
+  * "best proven technology"
+  * "promote open source"
+  * "delivers 'Trust', befitting your company goal and public image.
+  * "keep up in-house DNSSEC expertise, autonomy"
+
+#### Continuity:
+  * HSM functionality networked or not
+  * Key synchronization
+  * Load balancing / High Availability / Active-Active
+  * Maintenance possible without interrupting service?
+  * Feasability of an exit or a switch to another supplier
+
+#### Costs:
+  * Deprecation, expected/limited life time, sustainability
+  * Surcharges
+  * Finance tools, predictable costs?
+  * Licences, licence type, licences that could be blocking when scaling?
+
+#### Disaster recovery and prevention:
+  * Roll out in phases possible?
+  * Geographical "spreadedness"
+  * Keys importable / exportable.
+  * Fitting offline KSK scenario
+  * Protection against power faillure etc.
+  * Roll-backs for upgrades?
+  * Time between disaster and recovery
+  * Upgrades available to us or automatic updates behind the scenes in the cloud?
+  * Upgrades and patches testable in acceptance?
+  * Backup keys in physical device in your political region?
+
+#### Marketability:
+  * Can be used by other internal users for signing / encryption / decryption
+  * Surplus capacity can be made available to 3rd party?
+
+#### Monitoring:
+  * Alerting, or alerting tool of our choice
+  * Metrics, logs, snmp, splunk/influx/prometheus-agent
+
+#### Capacity:
+  * Signatures per second
+  * Time to create, sign and publish zone
+
+#### Risks:
+  * Scaling, what if you need more?
+  * "(changes in) public opinion"-proof?
+  * Are you mostly in control? e.g. is it clear what happened to the hsm and/or its functionality last (insert_time_period)?)
+  * Future-proof maintenance, not end-of-life product
+  * Proven technology or not
+  * Solitary maintainer, uncooperative maintainer
+  * Spare parts
+  * Unwanted hosting party access, agency access
+
+#### Security:
+  * How are incidents and patches communicated?
+  * Isolation tennants/partitions
+  * Key-logger protection (e.g. PEDs) between keyboard and cryptomodule
+  * Secure/encrypted communication between all parts.
+  * Security patches, clear patch process
+  * Auditability, audit trail
+  * Lockable, auto-locking
+  * Login access to the appliance or software for operations like adding users.
+  * M of N based authentication
+  * Password based access to HSM functionalities vs. certificate or token based
+  * Physical anti-theft
+  * Potential for 3rd party access
+  * Role based access
+  * Secure wipe of keys (decommission)
+  * Small or bigger attack surface? lowest number of services/open ports?
+  * Tamperproofness
+
+#### Security:
+  * Do we get premium support or are we "just one of many customers".
+  * Documentation/education available to keep you up-to-date? Best practise guides?
+  * Help available, and under what conditions? 24x7x356? How fast?
+  * Can bugfixes be submitted in an acceptable way, and will the be acted upon?
+  * On-line knowledge base, or all questions "call support"
+  * Open source, code accessible
+  * Support "more or less in person" or ticketing
 
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide06.md)
 

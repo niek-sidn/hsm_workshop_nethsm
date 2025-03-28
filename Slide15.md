@@ -16,6 +16,7 @@ nitropy nethsm --no-verify-tls --host $NETHSM_PUB_IPV4:32768 info
 curl $CURLOPTS $API/info | jq .
 # And even:
 softhsm2-util --module $SO_NETHSM --show-slots  # you can use softhsm2-util with a different HSM!
+Nitrokey NetHSM also has a [Python SDK](https://github.com/Nitrokey/nethsm-sdk-py/) that you can probably use to get the same info output
 ```
 
 **Also note:** The pksc11-tool from the opensc package is mostly functional, but the version number "0.25" does communicate something.  

@@ -130,7 +130,7 @@ echo -n 'nl.                  3600    IN      SOA     ns1.dns.nl
 ```
 pkcs11-tool --module $SO_SOFTHSM --token Token1 --mechanism SHA256 --hash -i soa.txt -o soa.hash
 ```
-(remember: NetHSM cannot hash)
+(remember: NetHSM cannot hash, use: openssl dgst -sha256 -binary soa.txt > soa.hash )
 
 -------------------
 #### Signing needs keys, so we use the keys we made earlier:
@@ -153,6 +153,7 @@ pkcs11-tool --module $SO_SOFTHSM --token Token1 --label ec256nr2 --id 2 --verify
 ```
 That should work, no PIN needed  
 (remember: NetHSM cannot verify)
+
 
 ------------------
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide17.md)

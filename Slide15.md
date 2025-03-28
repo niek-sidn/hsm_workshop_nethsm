@@ -6,7 +6,7 @@ Also known as "Cryptoki".
 [PKCS#11 illustrated](https://github.com/tpm2-software/tpm2-pkcs11/blob/master/docs/illustrations/pkcs11_api_classification.png)  
 Most (all?) HSMs implement a PKCS#11 API. This means there is a very good chance PKCS#11 can be used to talk to an HSM.
 
-Linuxes have the opensc package that contains the pksc11-tool for use on the cli.  
+Linuxes have the ***opensc*** package that contains the pksc11-tool for use on the cli.  
 **Please note:** HSMs implement a PKCS#11 API but also often offer vendor specific tools (like softhsm2-util), and/or a HTTP based interface. This means you often can accomplish things in different more than one way.
 
 As an illustration: these 3 commands against a Nitrokey NetHSM have the "same" output:

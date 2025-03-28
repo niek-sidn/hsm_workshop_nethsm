@@ -7,7 +7,7 @@ Also known as "Cryptoki".
 Most (all?) HSMs implement a PKCS#11 API. This means there is a very good chance PKCS#11 can be used to talk to an HSM.
 
 Linuxes have the ***opensc*** package that contains the pksc11-tool for use on the cli.  
-**Please note:** HSMs implement a PKCS#11 API but also often offer vendor specific tools (like softhsm2-util), and/or a HTTP based interface. This means you often can accomplish things in different more than one way.
+**Please note:** HSMs implement a PKCS#11 API, but also often offer vendor specific tools (like e.g. softhsm2-util), and/or a HTTP based interface (could also be an API). This means you often can accomplish things in  more than one way.
 
 As an illustration: these 3 commands against a Nitrokey NetHSM have the "same" output:
 ``` bash
@@ -41,9 +41,9 @@ print(base64.b64encode(iv).decode(),base64.b64encode(crypttext).decode())
 **All of PKCS#11 works via a library/"driver" (.dll or .so) often called
 "Module".**  
 The environment variables SO_SOFTHSM and SO_NETHSM above are paths to such .so libs  
-`SO_SOFTHSM = /usr/lib/softhsm/libsofthsm2.so`  
-`SO_NETHSM = /usr/local/lib/nethsm/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so`  
-`SO_KRYOPTIC = /usr/lib/x86_64-linux-gnu/pkcs11/libkryoptic_pkcs11.so`  
+`export SO_SOFTHSM="/usr/lib/softhsm/libsofthsm2.so"`  
+`export SO_NETHSM="/usr/local/lib/nethsm/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so"`  
+`export SO_KRYOPTIC="/usr/lib/x86_64-linux-gnu/pkcs11/libkryoptic_pkcs11.so"`  
 
 -----------------
 ## Exercise "Introducing pkcs11-tool from opensc package & hash"
@@ -62,8 +62,8 @@ sudo apt install opensc xxd openssl
 ``` bash
 (sudo) pkcs11-tool --module $SO_SOFTHSM --list-slots
 ```
-If run as root it shows all slots of all users, but if run as non-root, pkcs11-tool shows only own tokens)  
-Also try the other HSMs, Hint: KRYOPTIC differs, what happened?
+If run as root it shows all slots of all users, but if run as non-root, pkcs11-tool shows only your own tokens)  
+Also try the other HSMs, Hint: Kryoptic differs, what happened?
 
 Let's correct this:
 ``` bash
@@ -71,9 +71,9 @@ pkcs11-tool --module $SO_KRYOPTIC --init-token --label Token1
 # enter 1234 as so_pin (twice)
 pkcs11-tool --module $SO_KRYOPTIC --token Token1 --init-pin --login
 # enter the so_pin (1234) as Security Officer authentication
-# enter 0000 (twice) as operator pin
-# Please note that Kryoptic depends on an env variable e.g. KRYOPTIC_CONF=/root/token.sql
-#   it should contain a path to an non-existing file or an existing sqlite database
+# enter 0000 (twice) to set the operator pin
+# Please note that Kryoptic depends on an env variable KRYOPTIC_CONF=/root/token.sql
+#   it should contain a path to a non-existing file or an existing kryoptic sqlite database
 ```
 
 ------------------
@@ -90,15 +90,15 @@ This shows all operations an HSM can do. Different HSMs differ!
 
 #### Hashing
 ```
-echo -n blah > blah.txt
+echo -n "I'm starting to like this HSM stuff" > blah.txt
 pkcs11-tool --module $SO_SOFTHSM --token Token1 --mechanism SHA256 --hash -i blah.txt | xxd -p -c 64
 pkcs11-tool --module $SO_KRYOPTIC --token Token1 --mechanism SHA256 --hash -i blah.txt | xxd -p -c 64
 sha256sum blah.txt
 # Now do $SO_NETHSM (--token NitroNetHSM) and compare the Error to the --list-mechanisms output above
 ```
-Like sha256sum en openssl, your token could do hashing.  
-With pkcs11-tool -i and -o, please make sure you have only 1 space between it and the filename!  
-The *xxd -p -c 64* is just to convert the binary output to human-readable, sha256sum-like, output.
+Like sha256sum and openssl, your token could do hashing.  
+The *xxd -p -c 64* is just to convert the binary output to human-readable, sha256sum-like, output.  
+*Bug Alert: With pkcs11-tool -i and -o, please make sure you have only 1 space between it and the filename!*  
 
 ---------------
 

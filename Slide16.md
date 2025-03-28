@@ -144,7 +144,7 @@ Needs PIN, you should know why.
 ```
 cat soa.sig | base64
 ```
-That looks remarkably like an EC RRSIG!
+That looks remarkably like an EC RRSIG!  
 
 ---------------
 #### Let's verify:

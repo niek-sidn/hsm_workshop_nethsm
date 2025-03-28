@@ -22,8 +22,8 @@
 #### Company policy/image:
   * "best proven technology"
   * "promote open source"
-  * "delivers 'Trust', befitting your company goal and public image.
-  * "keep up in-house DNSSEC expertise, autonomy"
+  * delivers "Trust", befitting your company goal and public image.
+  * Keep up in-house DNSSEC expertise, autonomy
 
 #### Continuity:
   * HSM functionality networked or not
@@ -90,11 +90,11 @@
   * Small or bigger attack surface? lowest number of services/open ports?
   * Tamperproofness
 
-#### Security:
+#### Support:
   * Do we get premium support or are we "just one of many customers".
   * Documentation/education available to keep you up-to-date? Best practise guides?
   * Help available, and under what conditions? 24x7x356? How fast?
-  * Can bugfixes be submitted in an acceptable way, and will the be acted upon?
+  * Can bugfixes be submitted in an acceptable way, and will they be acted upon?
   * On-line knowledge base, or all questions "call support"
   * Open source, code accessible
   * Support "more or less in person" or ticketing

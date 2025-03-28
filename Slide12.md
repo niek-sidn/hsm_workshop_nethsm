@@ -36,4 +36,4 @@ The tamperproofness/Compliancy of all cloud hsm's is based on trusting the cloud
 (Alibaba CloudHSM looks like a 1-on-1 copy of AWS. Knowing that it could be technically equivalent, but are you considering them as a supplier?)
 
 ----------------
-[Next](https://github.com/niek-sidn/hsm_workshop/blob/main/Slide13.md)
+[Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide13.md)

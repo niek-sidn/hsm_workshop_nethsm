@@ -88,12 +88,12 @@ pkcs11-tool --module $SO_NETHSM --keypairgen --label ec256nr2 --key-type EC:prim
  (For RSA: "--key-type RSA:2048")  
  (How to find the ECDSA key types: openssl ecparam -list_curves)
 
-In the past I have noticed unpredictable results with SoftHSM when using "--label" instead of "--id".  
+In the past I have noticed unpredictable results with SoftHSM when using "--label" instead of "--id", better use both.  
 
 -----------
 #### And let's actually see the public part:
 ```
-pkcs11-tool --module $SO_SOFTHSM --token Token1 --read-object --type pubkey --id 2 -o ec256nr2-pub.der
+pkcs11-tool --module $SO_SOFTHSM --token Token1 --read-object --type pubkey --label ec256nr2 --id 2 -o ec256nr2-pub.der
 ```
 No login needed, public parts are not marked as non-extractable or sensitive.  
 
@@ -130,6 +130,7 @@ echo -n 'nl.                  3600    IN      SOA     ns1.dns.nl
 ```
 pkcs11-tool --module $SO_SOFTHSM --token Token1 --mechanism SHA256 --hash -i soa.txt -o soa.hash
 ```
+(remember: NetHSM cannot hash)
 
 -------------------
 #### Signing needs keys, so we use the keys we made earlier:
@@ -150,7 +151,8 @@ That looks remarkably like an EC RRSIG!
 ```
 pkcs11-tool --module $SO_SOFTHSM --token Token1 --label ec256nr2 --id 2 --verify -m ECDSA -i soa.hash --signature-file soa.sig
 ```
-That should work, no PIN needed
+That should work, no PIN needed  
+(remember: NetHSM cannot verify)
 
 ------------------
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide17.md)

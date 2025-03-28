@@ -162,4 +162,4 @@ pkcs11-tool --module /usr/lib/softhsm/libsofthsm2.so --token Token1 --id 2 --ver
 That should work, no PIN needed
 
 ------------------
-[Next](https://github.com/niek-sidn/hsm_workshop/blob/main/Slide17.md)
+[Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide17.md)

@@ -1,5 +1,5 @@
 enable_set_attribute_value: false
-log_level: Info
+log_level: Error
 
 slots:
   - label: NitroNetHSM

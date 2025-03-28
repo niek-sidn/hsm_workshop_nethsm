@@ -22,7 +22,7 @@ softhsm2-util --module $SO_NETHSM --show-slots  # you can use softhsm2-util with
 [OpenSC on GitHub](https://github.com/OpenSC/OpenSC)  
 I ran into some issues with version 0.22/0.23, but 0.25 is fine.  
 
-[List of PKCS#11 enabled software on Wikipedia](https://en.wikipedia.org/wiki/List_of_applications_using_PKCS_11)  
+[List of PKCS#11 enabled software on Wikipedia](https://web.archive.org/web/20240405121602/https://en.wikipedia.org/wiki/List_of_applications_using_PKCS_11#expand)  
 Important to us: OpenDNSSEC, BIND, PowerDNS and Knot are all on the list.  
 All the software on the list should in principle be able to talk to an HSM.  
 Either as a client or as a server, either directly or via some plug-in or middleware.  

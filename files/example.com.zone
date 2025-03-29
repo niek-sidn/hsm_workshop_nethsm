@@ -1,0 +1,5 @@
+$ORIGIN example.com.
+$TTL 5m
+@       SOA     ns1 hostmaster 1000 5m 1m 10m 4m
+        NS      ns1
+ns1     A       127.0.0.1

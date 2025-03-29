@@ -142,12 +142,17 @@ incus launch images:ubuntu/noble user${X}
 sleep 2
 incus exec user${X} -- mkdir -p /usr/local/etc/nitrokey/
 incus exec user${X} -- mkdir -p /usr/local/lib/nethsm/
-incus exec user${X} -- apt install -y wget opensc curl jq softhsm2 dnsutils
+incus exec user${X} -- apt install -y wget opensc curl jq softhsm2 dnsutils knot lmdb-utils
+incus exec user${X} -- mkdir -p /var/lib/knot/zones/
 incus file push /root/hsm_workshop_nethsm/files/part_env_vars-${X} user${X}/root/hsm_env_vars
 incus file push /root/hsm_workshop_nethsm/files/hsm-client/bashrc user${X}/root/.bashrc
 incus file push /root/hsm_workshop_nethsm/files/p11nethsm.conf-${X} user${X}/usr/local/etc/nitrokey/p11nethsm.conf
 incus file push /root/hsm_workshop_nethsm/files/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so user${X}/usr/local/lib/nethsm/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so
 incus file push /root/hsm_workshop_nethsm/files/libkryoptic_pkcs11.so user${X}/usr/lib/x86_64-linux-gnu/pkcs11/libkryoptic_pkcs11.so
+incus file push /root/hsm_workshop_nethsm/files/knot.conf user${X}/etc/knot/knot.conf
+incus file push /root/hsm_workshop_nethsm/files/example.com.zone user${X}/var/lib/knot/zones/example.com.zone
+incus exec user${X} -- chown -R knot:knot /var/lib/knot/zones
+incus exec user${X} -- systemctl restart knot
 done
 echo ${USERPASS}
 ```

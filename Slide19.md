@@ -12,4 +12,4 @@ All by running one single `docker compose up --build`
 * A lot of what you learned here is actually applied in it.  
 * And yes, you can be a contributor :-)  
 
-[Find Stiab here](https://github.com/niek-sidn/stiab)
+[Find Stiab here](https://github.com/niek-sidn/stiab/blob/main/README.md)

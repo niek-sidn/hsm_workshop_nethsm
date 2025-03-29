@@ -3,9 +3,9 @@
 Recently we see a lot cloud of activity on the HSM front.  
 It is (a.o.) aimed at running a TLS service without having the keys for
 this in memory on a (web)server-instance.  
-A.k.a.: "Keyless SSL" (but of course there is a key, just not on the server)
+A.k.a.: "Keyless SSL" (but of course there is a key, just not on the server that uses it)
 
-Most offer PKCS11 "language" as a standardised communication path
+Most HSMs offer PKCS11 "language" as a standardised communication path
 (pkcs11: more below)  
 Sometimes it is just a keyring in disguise (could be good or bad).  
 Sometimes only usable from cloud VM instances on the same platform  

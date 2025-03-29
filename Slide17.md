@@ -28,4 +28,4 @@ HSM/Token does report it and I can create an AES key with pkcs11-tool just fine.
 Error: pkcs11-tool: unrecognized option '--encrypt'.
 
 --------------------
-[Next](https://github.com/niek-sidn/hsm_workshop/blob/main/Slide18.md)
+[Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide18.md)

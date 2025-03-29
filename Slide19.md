@@ -9,6 +9,7 @@ Please do a `knotc stop`
 We would like to invite you to take a look at one of our other ptojects: **Stiab**  
 *Get a complete DNSSEC signing setup running on your laptop, ready for all your testing needs.*  
 All by running one single `docker compose up --build`  
-And yes, you can be a contributor :-)  
+* A lot of what you learned here is actually applied in it.  
+* And yes, you can be a contributor :-)  
 
 [Find Stiab here](https://github.com/niek-sidn/stiab)

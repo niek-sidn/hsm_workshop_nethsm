@@ -15,6 +15,7 @@ Time to deliver.
 -------------------
 ``` bash
 pkcs11-tool --module $SO_NETHSM --keygen --key-type AES:128 --label aes128nr1
+pkcs11-tool --module $SO_NETHSM --label aes128nr1 --list-objects
 echo -n 'This is top secret!!!___________' > mysecret.txt  # padding to get a multiple of 16 bytes
 pkcs11-tool --module $SO_NETHSM --encrypt --label aes128nr1 -m AES-CBC --iv "deadbeefdeadbeefdeadbeefdeadbeef" -i mysecret.txt -o mysecret.aes
 rm mysecret.txt

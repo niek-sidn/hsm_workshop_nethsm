@@ -13,7 +13,7 @@ Sometimes only usable from cloud VM instances on the same platform
 Sometimes it is a full blown Thales/Safenet/Luna (partition) with or
 without a wrapper (e.g. IBM cloud hsm).  
 If you are a Thales customer: they also offer a cloud product, that even integrates with their hardware.  
-[Trial](https://thales.eu.market.dpondemand.io/signup/)  
+[Link to trial](https://thales.eu.market.dpondemand.io/signup/)  
 AWS offers CloudHSM at $1.50 an hour, so that looks sort of reasonable,
 
 #### Beware

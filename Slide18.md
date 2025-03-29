@@ -63,3 +63,5 @@ cat /var/lib/knot/zones/example.com.zone
 journalctl -exu knot  # OR tail -200 /var/log/syslog
 ```
 We sure keep those keys singning and rolling!
+
+[Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide19.md)

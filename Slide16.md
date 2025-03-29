@@ -69,7 +69,7 @@ Did you notice we have only the pub part? Again, not logged in!
 pkcs11-tool --module $SO_SOFTHSM --token Token1 --list-objects --login --login-type user --pin 0000
 ```
 That's better, we now see the private and public part (same labels!)  
-We do not see the actual keys using this command, not surprising for the private part, since the HSM obviously never wants to show its private parts.  
+We do not see the actual keys using this command, not surprising, since the HSM obviously never wants to show its private parts.  
 But also the public part is not shown, this is just not the right command for that.
 
 -------

@@ -11,18 +11,24 @@ Note: YMMV, not all fully matured.
 
 --------------------
 ## Exercise "Symmetry"
+I promised I'd show you how to use an HSM for symmetric encryption and decryption.  
+Time to deliver.  
+
+-------------------
+``` bash
+pkcs11-tool --module $SO_NETHSM --keygen --key-type AES:128 --label aes128nr1
+echo -n 'This is top secret!!!___________' > mysecret.txt  # padding to get a multiple of 16 bytes
+pkcs11-tool --module $SO_NETHSM --encrypt --label aes128nr1 -m AES-CBC --iv "deadbeefdeadbeefdeadbeefdeadbeef" -i mysecret.txt -o mysecret.aes
+rm mysecret.txt
+base64 mysecret.aes
+pkcs11-tool --module $SO_NETHSM --decrypt --label aes128nr1 -m AES-CBC --iv "deadbeefdeadbeefdeadbeefdeadbeef" -i mysecret.aes
+pkcs11-tool --module $SO_NETHSM --delete-object --label aes128nr1 --type secrkey
+# Your secret is now forever safe.
+```
 Note: With pkcs11-tool version 0.22 I never managed to use symmetrical encryption (e.g. AES), it is not supported, even though the
 HSM/Token does report it and I can create an AES key with pkcs11-tool just fine.
 Error: pkcs11-tool: unrecognized option '--encrypt'.
 
--------------------
-Version 0.23 does support it. If you have 0.23:
-```
-echo 'Top secret information' > blah.txt
-pkcs11-tool --module /usr/lib/softhsm/libsofthsm2.so --token Token1 --keygen --key-type AES:16 --label aes16_1 --id 13 --pin 0000
-pkcs11-tool --module /usr/lib/softhsm/libsofthsm2.so --token Token1 --pin 0000 --encrypt --id 13 -m AES-CBC-PAD --iv "00000000000000000000000000000000" -i blah.txt -o encrypted_file.data
-pkcs11-tool --module /usr/lib/softhsm/libsofthsm2.so --token Token1 --pin 0000 --decrypt --id 13 -m AES-CBC-PAD --iv "00000000000000000000000000000000" -i encrypted_file.data
-```
 
 ---------------
 ## Optional Exercise "Trusted Platform Module"

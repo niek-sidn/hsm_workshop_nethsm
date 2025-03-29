@@ -90,14 +90,15 @@ This shows all operations an HSM can do. Different HSMs differ!
 -----------------
 
 #### Hashing
+Like sha256sum and openssl, your token could do hashing.
 ```
 echo -n "I'm starting to like this HSM stuff" > blah.txt
 pkcs11-tool --module $SO_SOFTHSM --token Token1 --mechanism SHA256 --hash -i blah.txt | xxd -p -c 64
 pkcs11-tool --module $SO_KRYOPTIC --token Token1 --mechanism SHA256 --hash -i blah.txt | xxd -p -c 64
+openssl dgst -sha256 -binary blah.txt | xxd -p -c 64
 sha256sum blah.txt
 # Now do $SO_NETHSM (--token NitroNetHSM, or just omit --token) and compare the Error to the --list-mechanisms output above
 ```
-Like sha256sum and openssl, your token could do hashing.  
 The *xxd -p -c 64* is just to convert the binary output to human-readable, sha256sum-like, output.  
 *Bug Alert: With pkcs11-tool -i and -o, please make sure you have only 1 space between it and the filename!*  
 

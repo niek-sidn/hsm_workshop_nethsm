@@ -102,7 +102,7 @@ Note: if you compiled SoftHSM yourself, you could have an Sqlite3 db in /var/lib
 try: sqlite3 /var/lib/softhsm/tokens/....../sqlite3.db and the command .dump to see all (hint: .quit/.help).
 
 Please note: As I mentioned earlier, SoftHSM isolates its slots/tokens, a token created by a user is unavailable to other users.
-This means that if you are creating tokens for a different user (e.g. Bind, Knot, OpenDNSsec) you need to use sudo. You'll learn this later.
+This means that if you are creating tokens for a different user (e.g. Bind, Knot, OpenDNSsec) you need to use sudo.
 
 -------------------
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide12.md)

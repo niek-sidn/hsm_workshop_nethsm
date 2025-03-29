@@ -14,10 +14,10 @@ Sometimes it is a full blown Thales/Safenet/Luna (partition) with or
 without a wrapper (e.g. IBM cloud hsm).  
 If you are a Thales customer: they also offer a cloud product, that even integrates with their hardware.  
 [Link to trial](https://thales.eu.market.dpondemand.io/signup/)  
-AWS offers CloudHSM at $1.50 an hour, so that looks sort of reasonable,
+AWS offers CloudHSM at $1.50 an hour, so that looks sort of reasonable.
 
 #### Beware
-but, as with all cloud products...  
+But, as with all cloud products...  
 ...beware of vendor lock-in, and keep an eye on your wallet, cloud can get expensive real fast.  
 Also: maybe a vendor also has a charge per hour / charge per key / charge per use.  
 ...Or all of the above..., please ask your teams financial engineer.

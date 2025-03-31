@@ -11,7 +11,7 @@ An HSM can be:
 
     > *Note NitroKey is not AWS Nitro, that is just a name clash*
 
-Your bankcard could be viewed as an HSM... maybe.\
+Your bankcard could be viewed as an HSM... maybe.  
 If you have a modern computer or laptop, you could have a TPM (Trusted Platform Module) inside it, these have a lot in common with an HSM.
 
 --------------------

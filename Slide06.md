@@ -25,7 +25,7 @@ Especially when creating keys: a predictable key may lead to the worst false sen
 
 ## Log into the shell server using the provided credentials
 I strongly advise you to use the SIDN provided shell server.  
-Just ssh into it with the provided ip adress and credentials.  
+Just ssh into it with the provided ip adress or hostname and credentials.  
 `ssh userX@centrshell.sidn.nl`  
 `git clone https://github.com/niek-sidn/hsm_workshop_nethsm.git`  
 It has most of the needed packages installed.  

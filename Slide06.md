@@ -71,7 +71,7 @@ On kernels <5 this drops on intensive use of /dev/random (e.g. `od -d /dev/rando
 ---
 #### Random from an HSM on the net 1  
 ```bash
-cat hsm_env_vars
+cat hsm_env_vars  # provided on the shell server
 curl $CURLOPTS --user "$OPERATOR:$OPASS" -X POST $API/random -H 'accept: application/json' -H 'Content-Type: application/json' -d '{ "length": 4 }' | jq -r .random | base64 -d | xxd -p -c 64
 ```
 This works because this specific HSM offers an HTTP interface.

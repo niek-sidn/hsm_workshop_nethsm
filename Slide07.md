@@ -3,7 +3,7 @@
 Doing *hash operations* is an important function of an HSM.  
 A hash is a one-way mathematical "door": going through is easy, but going back out is very difficult.  
 A small change in input gets you a wildly different, and unpredictable, output  
-Digitally signing is basically creating a hash of a text and the signing that hash.  
+Digitally signing is basically creating a hash of a text and then signing that hash.  
 E.g. DNSSEC Algo 13 is ECDSA Curve P-256 signing of a SHA-256 hash of a DNS record.
 
 But hashes can be precalcutated (and stored and indexed) into so-called rainbowtables.  

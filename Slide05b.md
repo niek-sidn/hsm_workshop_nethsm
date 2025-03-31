@@ -18,6 +18,8 @@
   * Number of keys
   * Number of partitions
   * Which signing algorithms
+  * Signatures per second
+  * Time to create, sign and publish zone
 
 #### Company policy/image:
   * "best proven technology"
@@ -57,10 +59,6 @@
 #### Monitoring:
   * Alerting, or alerting tool of our choice
   * Metrics, logs, snmp, splunk/influx/prometheus-agent
-
-#### Capacity:
-  * Signatures per second
-  * Time to create, sign and publish zone
 
 #### Risks:
   * Scaling, what if you need more?

@@ -23,6 +23,12 @@ Especially when creating keys: a predictable key may lead to the worst false sen
 ------------
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide07.md)
 
+## Log into the shell server using the provided credentials
+I strongly advise you to use the SIDN provided shell server.  
+Just ssh into it with the provided ip adress and credentials.  
+It has most of the needed packages installed.  
+It has all the config files, even if you want to run the exercises directly on your laptop, you will still need a source for copy-pasting.  
+
 ## Exercise "Random in bash"
 Random: bash random commands use (non-blocking) /dev/urandom, not (almost) real random.\
 Run:

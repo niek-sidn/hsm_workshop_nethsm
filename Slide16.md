@@ -2,6 +2,18 @@
 ## PKCS#11 (part 2)
 Recap: As mentioned before PKCS#11 works with "Slots" and "Tokens".
 [Illustrated here](https://github.com/tpm2-software/tpm2-pkcs11/blob/master/docs/illustrations/reader-slot-token-obj.png)  
+```mermaid
+---
+title: Components
+---
+graph LR
+R(("`Reader`")) --> S
+S(("` Slot `")) --> T
+T(("`Token `"))
+T --> O1(("`Object`"))
+T --> O2(("`Object`"))
+T --> O3(("`Object`"))
+```
 In PKSC11 a **"Token"** is the term used for a device that can do **crypto operations**, e.g. a smartcard 
 or the crypto module of an HSM or an HSM partition (virtual HSM on e.g. Thales Luna).  
 This name is not surprising: USB devices for OTP and other things that go into a slot are often also called "tokens".

@@ -50,8 +50,19 @@ Nitrokey NetHSM has only 1 slot with only 1 token, but it has 'namespaces' and e
 Thales has 'partitions' that function as as complete virtual HSM and are used as a slot-token.  
 Take away: Different vendors do things differently.
 
-A token can contain lots of key objects.  
-[illustration](https://github.com/tpm2-software/tpm2-pkcs11/blob/master/docs/illustrations/reader-slot-token-obj.png)
+A token can contain lots of key objects. [illustration](https://github.com/tpm2-software/tpm2-pkcs11/blob/master/docs/illustrations/reader-slot-token-obj.png)  
+```mermaid
+---
+title: Components
+---
+graph LR
+R(("`Reader`")) --> S
+S(("` Slot `")) --> T
+T(("`Token `"))
+T --> O1(("`Object`"))
+T --> O2(("`Object`"))
+T --> O3(("`Object`"))
+```
 ```bash
 sudo softhsm2-util --show-slots
 softhsm2-util --show-slots

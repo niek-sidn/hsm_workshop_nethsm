@@ -78,7 +78,7 @@ cat /usr/local/etc/nitrokey/p11nethsm.conf
 pkcs11-tool --module /usr/local/lib/nethsm/nethsm-pkcs11-vv1.6.0-x86_64-ubuntu.24.04.so --generate-random 4 | xxd -c 64 -p
 # or pkcs11-tool --module $SO_NETHSM --generate-random 4 | xxd -c 64 -p
 ```
-An HSM is pretty much guaranteed th have a PKCS#11 interface
+An HSM is pretty much guaranteed to have a PKCS#11 interface
 
 ---------------
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide07.md)

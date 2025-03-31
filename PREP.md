@@ -142,7 +142,7 @@ incus launch images:ubuntu/noble user${X}
 sleep 2
 incus exec user${X} -- mkdir -p /usr/local/etc/nitrokey/
 incus exec user${X} -- mkdir -p /usr/local/lib/nethsm/
-incus exec user${X} -- apt install -y wget opensc curl jq softhsm2 dnsutils knot lmdb-utils gnutls-bin
+incus exec user${X} -- apt install -y wget opensc curl jq softhsm2 dnsutils knot lmdb-utils gnutls-bin git
 incus exec user${X} -- mkdir -p /var/lib/knot/zones/
 incus file push /root/hsm_workshop_nethsm/files/part_env_vars-${X} user${X}/root/hsm_env_vars
 incus file push /root/hsm_workshop_nethsm/files/hsm-client/bashrc user${X}/root/.bashrc

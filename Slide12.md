@@ -29,7 +29,7 @@ nice: keys are replicated on all cluster members)
 No need to keep it running, you can always restore and decrypt on a new instance.  
 * Deployment can take quite some time, so a "throw-away" HSM maybe is not such an attractive scenario.
 * The tamperproofness/Compliancy of all cloud hsm's is based on trusting the cloud hsm's provider and it's certifications  
-(Alibaba CloudHSM looks like a 1-on-1 copy of AWS. Knowing that it could be technically equivalent, but are you considering them as a supplier?)
+(Alibaba CloudHSM looks like a 1-on-1 copy of AWS. Knowing that it could be technically equivalent, are you now considering them as a supplier?)
 
 ----------------
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide13.md)

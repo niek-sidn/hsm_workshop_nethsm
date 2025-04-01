@@ -6,7 +6,8 @@ Arguments for using an HSM:
     -   DNSSEC and TLS/SSL rely heavily on a web of trust!
     -   Safe key storage, Keys never leave the HSM. Keys are not in memory on your servers.
     -   Safe processing, crypto is done in the HSM.
-    -   Can you afford to be the weakest link in a chain? Other people could be dependend on you?
+    -   Think carefully: Can you afford to be the weakest link in a chain?  
+        Other people could be dependend on you!
 -   **Certification** and transparancy can be factors here.
 -   Interesting for **trusted (cloud)computing** (encrypted RAM for VM's in "half-trusted" environment)
 -   When moving to the cloud: Possibly a way to **avoid breaking agreements**, maybe even avoid legal risks.

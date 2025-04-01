@@ -11,7 +11,7 @@ standard PKCS#11 "language".
 >          AWS CloudHSM, IBM Cloud HSM, Azure Dedicated HSM, Azure Managed HSM, Google Cloud HSM
 
 **Nitro NetHSM** is a German company that has created an open source HSM.  
-It is real hardware, but they also offer Docker/Podman version of it for testing and* production, and they have a demo-server.  
+It is real hardware, but they also offer Docker/Podman version of it for testing *and* production, and they have a demo-server.  
 If compliancy to a standard (FIPS) or tamperproofing is not your *main* goal, it can offer an off-server
 solution.  
 The container images can be used to "roll your own" HSM-oid.  

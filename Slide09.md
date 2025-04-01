@@ -11,8 +11,8 @@ Arguments for using an HSM:
 -   **Certification** and transparancy can be factors here.
 -   Interesting for **trusted (cloud)computing** (encrypted RAM for VM's in "half-trusted" environment)
 -   When moving to the cloud: Possibly a way to **avoid breaking agreements**, maybe even avoid legal risks.
--   **Outsourcing**: the most cpu-intensive crypto processing to the most
-    capable hardware ("offloading")  
+-   **offloading**: the most cpu-intensive crypto processing to the most
+    capable hardware.    
     Let your server focus on other stuff. An HSM could maybe handle tens
     of thousands of signatures per second
 -   **High Availability and active-active** are very nice features, could have their own

@@ -18,7 +18,7 @@ That would be even more sad than no signing at all.
 Let's help it along!  
 First recall how you collect the necessary information:  
 ``` bash
-echo $SO_NETHSM  # copy to your paste buffer  
+echo $SO_NETHSM  
 p11tool --provider $SO_NETHSM --list-token-urls
 ```
 (no need to copy it)  

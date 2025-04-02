@@ -134,7 +134,7 @@ That should at least be a nice starting point. It probably needs pin=000; in it 
 Okay, let's go then.
 #### First make something that resembles a DNS RR:
 ```
-echo -n 'nl.                  3600    IN      SOA     ns1.dns.nl.    hostmaster.domain-registry.nl. 2023110219 3600 600 2419200 600' > soa.txt
+echo -n 'nl.                  3600    IN      SOA     ns1.dns.nl.    hostmaster.domain-registry.nl. 2025040200 3600 600 2419200 600' > soa.txt
 ```
 
 ----------------

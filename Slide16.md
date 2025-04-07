@@ -127,7 +127,7 @@ sudo apt install gnutls-bin
 p11tool --provider $SO_SOFTHSM --list-tokens
 p11tool --provider $SO_SOFTHSM --list-all "pkcs11:token=Token1" # or use more complete url
 ```
-That should at least be a nice starting point. It probably needs pin=000; in it too.
+That should at least be a nice starting point. It probably needs `pin=0000;` in it too.
 
 --------------------
 ## Exercise "pkcs11-tool: start signing already!"

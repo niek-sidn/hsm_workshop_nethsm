@@ -27,4 +27,4 @@ So you will get some hands on experience with it, and it's setup is described in
 NetHSM config: /usr/local/etc/nitrokey/p11nethsm.conf
 
 -------------------
-[Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide14.md)
+[Next](Slide15.md)

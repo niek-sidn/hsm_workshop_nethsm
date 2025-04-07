@@ -20,7 +20,7 @@ echo -n 'This is top secret!!!___________' > mysecret.txt  # padding to get a mu
 pkcs11-tool --module $SO_NETHSM --encrypt --label aes128nr1 -m AES-CBC --iv "deadbeefdeadbeefdeadbeefdeadbeef" -i mysecret.txt -o mysecret.aes
 rm mysecret.txt
 base64 mysecret.aes
-pkcs11-tool --module $SO_NETHSM --decrypt --label aes128nr1 -m AES-CBC --iv "deadbeefdeadbeefdeadbeefdeadbeef" -i mysecret.aes
+pkcs11-tool --module $SO_NETHSM --decrypt --label aes128nr1 -m AES-CBC --iv "deadbeefdeadbeefdeadbeefdeadbeef" -i mysecret.aes --id <id of your secret>
 pkcs11-tool --module $SO_NETHSM --delete-object --label aes128nr1 --type secrkey
 # Your secret is now forever safe.
 ```

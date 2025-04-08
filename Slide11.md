@@ -109,6 +109,7 @@ In SoftHSM the Security officer ("SO") can reinitialise a token, not much else c
 cat /etc/softhsm/softhsm2.conf
 ls -lR /var/lib/softhsm/tokens/  # use sudo if you want to see all slots
 ```
+The way that SoftHSM "packages" keys on disk is explained in more detail [here](https://web.archive.org/web/20230607235223/https://xakcop.com/post/softhsmv2/)  
 Note: if you compiled SoftHSM yourself, you could have an Sqlite3 db in /var/lib/softhsm/tokens/  
 try: sqlite3 /var/lib/softhsm/tokens/....../sqlite3.db and the command .dump to see all (hint: .quit/.help).
 

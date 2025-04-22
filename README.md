@@ -30,7 +30,7 @@ After this workshop you should have gained some confidence in working with an HS
 ``` bash
 git clone https://github.com/niek-sidn/hsm_workshop_nethsm.git
 ```
-Should you want to do (or present) this workshop yourself, take a look at the PREP "slide" for instructions and inspiration.  
+Should you want to do (or present) this workshop yourself, take a look at the [PREP](PREP.md) "slide" for instructions and inspiration.  
 
 --------------------
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide01.md)

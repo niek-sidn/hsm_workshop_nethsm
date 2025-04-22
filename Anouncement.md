@@ -45,12 +45,11 @@ No advanced math or crypto knowledge is needed, but you should know what public 
 No advanced DNS or DNSSEC knowledge is needed, but the workshop uses DNS based examples.  
 Basic experience issuing shell commands is required.
 
-Mak a choice:
+Make a choice:
 
-* Either make sure you have a laptop that can run a terminal, you can install software on, and that has access to the internet.  
-(You probably can also get away with using Virtualbox, LXC/Incus, or an other virtual environment running Ubuntu, just make sure you can install software and connect to the internet.)
-
-* Or, you can use an ssh-client (Linux / Putty / MacOS terminal) to ssh into a login server that SIDN will provide.  
+* Highly recommended: Use an ssh-client (Linux / Putty / MacOS terminal) to ssh into a login server that SIDN will provide.
+* Or: make sure you have a laptop that can run a terminal, you can install software on, and that has access to the internet.  
+(You probably can also get away with using Virtualbox, LXC/Incus, or an other virtual environment running Ubuntu, just make sure you can install software and connect to the internet.)  
 
 If you will be using a shell on your laptop directly or in a VM or container, make sure you have this software installed:
 

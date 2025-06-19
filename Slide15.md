@@ -102,6 +102,14 @@ sha256sum blah.txt
 The *xxd -p -c 64* is just to convert the binary output to human-readable, sha256sum-like, output.  
 *Bug Alert: With pkcs11-tool -i and -o, please make sure you have only 1 space between it and the filename!*  
 
+If you are using an actual Thales Luna, use --login\
+(hint: get the token name and PIN from /etc/opendnssec/conf.xml)\
+(hint: make sure your current user can read /etc/Chrystoki.conf, and make sure your token is defined in this file)\
+E.g.:
+```
+sudo pkcs11-tool --module /usr/safenet/lunaclient/lib/libCryptoki2_64.so --token my-token --mechanism SHA256 --hash --login -i blah.txt -o blah.hash
+cat blah.hash | xxd -p -c 64
+```
 ---------------
 
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide16.md)

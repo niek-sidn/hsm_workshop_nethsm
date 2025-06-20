@@ -62,6 +62,6 @@ Normal people can just examine the zonefile and the logs:
 cat /var/lib/knot/zones/example.com.zone
 journalctl -exu knot  # OR tail -200 /var/log/syslog
 ```
-We sure keep those keys singning and rolling!
+We sure keep those keys signing and rolling!
 
 [Next](https://github.com/niek-sidn/hsm_workshop_nethsm/blob/main/Slide19.md)
